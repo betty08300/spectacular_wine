@@ -1,48 +1,82 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { fetchAllBottles } from '../actions/bottle_actions';
+import { fetchAllBottles, fetchNote } from '../actions/bottle_actions';
 
 class BottleIndex extends React.Component {
     constructor(props) {
         super(props);
-        this.state = [];
+        this.state = {
+            bottles: [],
+            note: ''
+        };
+        this.handleMouseOver = this.handleMouseOver.bind(this)
     }
 
     componentDidMount() {
         this.props.fetchAllBottles().then(() => {
-            this.setState(this.props.bottles)
+            this.setState({bottles: this.props.bottles})
         });
     }
 
+    handleMouseOver(e) {  
+            this.props.fetchNote(e.currentTarget.id).then(()=>{
+                this.setState({note: this.props.note.note})
+            })
+    
+    }
+
     render() {
+        const {bottles, note} = this.state;
+
         return (
-            <div>
-                {this.props.bottles.map(bottle => {
-                    console.log(bottle)
+            <div className="wrapper">
+                <div className="header">
+                    <div>
+                        <div>
+                            Logo
+                        </div>
+                        <div>
+                            Title
+                        </div>
+                    </div>
+                    <div>
+                        {note}
+                    </div>
+                </div>
+                {bottles.map(bottle => {
+                    console.log(bottle.bottle_id)
                     return (
-                        <div key={bottle.bottle_id} id={bottle.bottle_id}>
-                            <div>
+                        <div className='bottle-container' key={bottle.bottle_id} id={bottle.bottle_id} onMouseOver={this.handleMouseOver}>
+                            {/* Make the above div relative */}
+                            <div className='rank'>
                                 {bottle.top100_rank}
                             </div>
-                            <div>
+                            <div className='score'>
                                 {bottle.score}
                             </div>
-                            <div>
+                            <div className='winery'>
                                 {bottle.winery_full}
                             </div>
-                            <div>
+                            <div className='wine'>
                                 {bottle.wine_full}
                             </div>
-                            <div>
+                            <div className='vintage'>
                                 {bottle.vintage}
                             </div>
-                            <div>
+                            <div className='color'>
                                 {bottle.color}
                             </div>
-                            <div>
+                            <div className='region'>
                                 {bottle.region}
                             </div>
+                          
+                            
+                            
+                            
+                          
+
+                        
                         </div>
                     )
                 })}
@@ -54,7 +88,8 @@ class BottleIndex extends React.Component {
 
 const msp = (state) => {
     return {
-        bottles: state.bottles
+        bottles: state.bottles,
+        note: state.note
     }
 
 }
@@ -62,6 +97,7 @@ const msp = (state) => {
 const mdp = (dispatch) => {
     return {
         fetchAllBottles: () => dispatch(fetchAllBottles()),
+        fetchNote: id => dispatch(fetchNote(id))
     }
 }
 

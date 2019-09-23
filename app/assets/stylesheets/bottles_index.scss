@@ -1,0 +1,31 @@
+$space-padding:0 10px;
+
+.wrapper {
+    position: relative;
+}
+
+.bottle-container {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    display: flex; 
+    justify-content: flex-start;
+    padding: 10px; 
+
+    .rank {
+        padding: $space-padding;
+    }
+
+    .score {
+        padding: $space-padding;
+    }
+
+    
+}
+.header {
+    height: 100px;
+    position: sticky;
+    top: 0;
+    padding: 10px;
+}
+

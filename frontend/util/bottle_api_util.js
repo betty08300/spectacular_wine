@@ -1,3 +1,5 @@
 export const fetchAllBottles = () => {
-    return fetch('/api/bottles').then(res => res.json())
+    return fetch('/api/bottles').then(res => {
+        return res.json()
+    })
 }

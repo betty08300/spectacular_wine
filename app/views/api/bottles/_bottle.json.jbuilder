@@ -1,0 +1,1 @@
+json.extract! bottle, :bottle_id, :winery_full, :wine_full, :vintage, :taster_initials, :color, :country, :region, :score, :price, :alternate_bottle_size, :issue_date, :top100_year, :top100_rank

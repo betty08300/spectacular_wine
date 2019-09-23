@@ -1,0 +1,3 @@
+class Bottle < ApplicationRecord
+    
+end

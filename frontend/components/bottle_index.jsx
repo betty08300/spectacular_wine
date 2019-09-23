@@ -45,10 +45,9 @@ class BottleIndex extends React.Component {
                     </div>
                 </div>
                 {bottles.map(bottle => {
-                    console.log(bottle.bottle_id)
                     return (
                         <div className='bottle-container' key={bottle.bottle_id} id={bottle.bottle_id} onMouseOver={this.handleMouseOver}>
-                            {/* Make the above div relative */}
+    
                             <div className='rank'>
                                 {bottle.top100_rank}
                             </div>
@@ -70,13 +69,7 @@ class BottleIndex extends React.Component {
                             <div className='region'>
                                 {bottle.region}
                             </div>
-                          
-                            
-                            
-                            
-                          
-
-                        
+                                                
                         </div>
                     )
                 })}

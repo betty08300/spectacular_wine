@@ -1,43 +1,55 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 
 import { fetchAllBottles } from '../actions/bottle_actions';
 
-const BottleIndex = props => {
-    const { bottles, fetchAllBottles } = props;
+class BottleIndex extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = [];
+    }
 
-    useEffect(() => {
-        fetchAllBottles();
-    },[])
+    componentDidMount() {
+        this.props.fetchAllBottles().then(() => {
+            this.setState(this.props.bottles)
+        });
+    }
 
-    return (
-        <div>
-            { bottles.map(bottle => {
-                return (
-                    <div key={bottle.bottle_id} className="row">
-                        <div className="score">
-                            {bottle.score}
+    render() {
+        return (
+            <div>
+                {this.props.bottles.map(bottle => {
+                    console.log(bottle)
+                    return (
+                        <div key={bottle.bottle_id} id={bottle.bottle_id}>
+                            <div>
+                                {bottle.top100_rank}
+                            </div>
+                            <div>
+                                {bottle.score}
+                            </div>
+                            <div>
+                                {bottle.winery_full}
+                            </div>
+                            <div>
+                                {bottle.wine_full}
+                            </div>
+                            <div>
+                                {bottle.vintage}
+                            </div>
+                            <div>
+                                {bottle.color}
+                            </div>
+                            <div>
+                                {bottle.region}
+                            </div>
                         </div>
-                        <div className="winery">
-                            {bottle.winery_full}
-                        </div>
-                        <div className='wine'>
-                            {bottle.wine_full}
-                        </div>
-                        <div className='vintage'>
-                            {bottle.vintage}
-                        </div>
-                        <div className='color'>
-                            {bottle.color}
-                        </div>
-                        <div className='region'>
-                            {bottle.region}
-                        </div>
-                    </div>
-                )
-            })}
-        </div>
-    )
+                    )
+                })}
+            </div>
+        )
+    }
+
 }
 
 const msp = (state) => {

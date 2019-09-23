@@ -3,3 +3,9 @@ export const fetchAllBottles = () => {
         return res.json()
     })
 }
+
+export const fetchNote = (id) => {
+    return fetch(`https://top-100-example.s3.amazonaws.com/${id}.json`).then(res => {
+        return res.json()
+    })
+} 

@@ -1,25 +1,20 @@
-# README
+# Spectacular Wine 
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* A site shows top 100 wine listing. When user hovers over each row, the testing note will appear on top
 
-Things you may want to cover:
+[Live](https://artsy-aa.herokuapp.com/#/)
 
-* Ruby version
+## Technologies 
 
-* System dependencies
+* Backend - Ruby on Rails
+* Frontend - React/ Redux 
 
-* Configuration
 
-* Database creation
+## To get start
+* bundle install
+* npm install
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-# spectacular_wine
+## To run on localhost 
+* [Localhost](http://localhost:3000)
+* Run rails S
+* Run npm run start

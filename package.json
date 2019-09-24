@@ -1,4 +1,8 @@
 {
+  "engines": {
+    "node": "10.13.0",
+    "npm": "6.4.1"
+  },
   "name": "spectacular_wine",
   "dependencies": {
     "@babel/core": "^7.5.5",

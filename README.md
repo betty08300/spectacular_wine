@@ -9,12 +9,9 @@
 * Backend - Ruby on Rails
 * Frontend - React/ Redux 
 
-
-## To get start
+## To run on local
+* [Localhost](http://localhost:3000)
 * bundle install
 * npm install
-
-## To run on localhost 
-* [Localhost](http://localhost:3000)
 * Run rails S
 * Run npm run start

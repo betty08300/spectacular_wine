@@ -1,0 +1,65 @@
+.header-container {
+    height: 330px;
+    position: sticky;
+    top: 0;
+    box-shadow: 0px 5px 5px #bebebe;
+    background-color: #ffffff;
+    z-index: 1;
+    width: 100%;
+    
+   
+    .note{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 20px; 
+        background: rgba(133, 131, 131, 0.133);
+        box-shadow: inset 0px 0px 5px #978f8f;
+        height: 72px;
+    }
+
+    .noteDefault{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 20px; 
+        background: rgba(133, 131, 131, 0.133);
+        box-shadow: inset 0px 0px 5px #978f8f;
+        height: 72px;
+        color: 	#808080;
+    }
+   
+}
+
+.header-wrapper{
+    display:  flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header{
+    display: flex; 
+   
+    img{
+        height:125px;
+    }
+    
+    h1{
+        font-family: 'Abril Fatface', cursive;
+        color: #792424;
+        font-size: 1.5em;
+        text-align: center;
+        margin: -10px 0 20px 0;
+    }
+}
+
+.title{
+    font-weight: 700;
+    font-size: 17px;
+    color: #792424;
+    width: 95%;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    margin: 20px 10px;
+}

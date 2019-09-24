@@ -8,6 +8,14 @@
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
   </head>
+  <script type='text/javascript'>
+    window.logo = '<%= image_url('logo.png')%>'
+    window.redWine = '<%= image_url('Redwine.png')%>'
+    window.whiteWine = '<%= image_url('Whitewine.png')%>'
+    window.dessert = '<%= image_url('dessert.png')%>'
+    window.sparkling = '<%= image_url('sparkling.png')%>'
+    window.blush = '<%= image_url('blush.png')%>'
+  </script>
 
   <body>
     <%= yield %>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import Header from './header'
 
 import { fetchAllBottles, fetchNote } from '../actions/bottle_actions';
 
@@ -8,7 +9,8 @@ class BottleIndex extends React.Component {
         super(props);
         this.state = {
             bottles: [],
-            note: ''
+            note: "To see a taster's notes, please hover over a wine.",
+            noteDefault: true
         };
         this.handleMouseOver = this.handleMouseOver.bind(this)
     }
@@ -19,7 +21,8 @@ class BottleIndex extends React.Component {
         });
     }
 
-    handleMouseOver(e) {  
+    handleMouseOver(e) { 
+        if(this.state.noteDefault) this.setState({noteDefault: false}) 
             this.props.fetchNote(e.currentTarget.id).then(()=>{
                 this.setState({note: this.props.note.note})
             })
@@ -29,50 +32,75 @@ class BottleIndex extends React.Component {
     render() {
         const {bottles, note} = this.state;
 
+        const noteCss = this.state.noteDefault ? 'noteDefault' : 'note'
+
         return (
             <div className="wrapper">
-                <div className="header">
-                    <div>
-                        <div>
-                            Logo
-                        </div>
-                        <div>
-                            Title
-                        </div>
-                    </div>
-                    <div>
+                <div className='header-container'>
+                        <Header/>
+                
+                    <div className={noteCss}>
                         {note}
                     </div>
+                    <div className='title'>
+                        <div className='rank'>Rank</div>
+                        <div className='score'>Score</div>
+                        <div className='color'>Type</div>
+                        <div className='winery'>Winery</div>
+                        <div className='wine'>Wine</div>
+                        <div className='vintage'>Vintage</div>
+                        <div className='region'>Region</div>
+                    </div>
                 </div>
-                {bottles.map(bottle => {
-                    return (
-                        <div className='bottle-container' key={bottle.bottle_id} id={bottle.bottle_id} onMouseOver={this.handleMouseOver}>
-    
-                            <div className='rank'>
-                                {bottle.top100_rank}
+                <div>
+                    {bottles.map(bottle => {
+                        return (
+                            <div className='bottle-container' key={bottle.bottle_id} id={bottle.bottle_id} onMouseOver={this.handleMouseOver}>
+        
+                                <div className='rank'>
+                                    {bottle.top100_rank}
+                                </div>
+                                <div className='score'>
+                                    {bottle.score}
+                                </div>
+                                <div className='color'>
+                                    {bottle.color==='Red'&&
+                                    <img src={redWine}/>
+                                }
+                                    {bottle.color==='White' &&
+                                    <img src={whiteWine}/>
+                                }
+                                    {bottle.color==='Dessert'&&
+                                    <img src={dessert} />
+                                }
+                                    {bottle.color==='Sparkling' &&
+                                    <img src={sparkling}/>
+                                }
+
+                                    {bottle.color==='Blush'&&
+                                    <img src={blush}/>
+                                }
+                                    <div className='color-text'>
+                                        {bottle.color}
+                                    </div>
+                                </div>
+                                <div className='winery'>
+                                    {bottle.winery_full}
+                                </div>
+                                <div className='wine'>
+                                    {bottle.wine_full}
+                                </div>
+                                <div className='vintage'>
+                                    {bottle.vintage}
+                                </div>
+                                <div className='region'>
+                                    {bottle.region}
+                                </div>
+                                                    
                             </div>
-                            <div className='score'>
-                                {bottle.score}
-                            </div>
-                            <div className='winery'>
-                                {bottle.winery_full}
-                            </div>
-                            <div className='wine'>
-                                {bottle.wine_full}
-                            </div>
-                            <div className='vintage'>
-                                {bottle.vintage}
-                            </div>
-                            <div className='color'>
-                                {bottle.color}
-                            </div>
-                            <div className='region'>
-                                {bottle.region}
-                            </div>
-                                                
-                        </div>
-                    )
-                })}
+                        )
+                    })}
+                </div>
             </div>
         )
     }

@@ -1,31 +1,78 @@
-$space-padding:0 10px;
-
 .wrapper {
     position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
 .bottle-container {
-    position: relative;
-    width: 100%;
-    height: 50px;
-    display: flex; 
-    justify-content: flex-start;
-    padding: 10px; 
-
-    .rank {
-        padding: $space-padding;
-    }
-
-    .score {
-        padding: $space-padding;
-    }
-
-    
-}
-.header {
-    height: 100px;
-    position: sticky;
-    top: 0;
+    width: 95%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 42px;
+    margin: 10px;
+    border: 1px solid #808080;
+    border-radius: 8px;
     padding: 10px;
+    &:nth-child(even){
+        &:hover {
+            border: 2px solid #792424;
+        }
+        
+    }
+    &:nth-child(odd){
+        &:hover{
+            border: 2px solid #611485;
+        }
+    }
 }
+
+.rank {
+    width: 7.5%;
+    text-align: center;
+}
+
+.score {
+    width: 7.5%;
+    text-align: center;
+}
+
+.winery{
+    width: 20%;
+}
+
+.wine{
+    width: 30%;
+}
+
+.vintage{
+    width: 12%;
+}
+
+.color {
+    width: 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    
+
+    img{
+        width:30px;
+        height:40px;
+        
+    }
+
+    .color-text{
+        font-size: 12px;
+        text-align: center;
+        display: inline-block;
+        position: relative; 
+    }
+}
+
+.region {
+    width: 13%;
+}
+
 

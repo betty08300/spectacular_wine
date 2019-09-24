@@ -2,7 +2,7 @@
 
 * A site shows top 100 wine listing. When user hovers over each row, the testing note will appear on top
 
-[Live](https://artsy-aa.herokuapp.com/#/)
+[Live](https://spectacular-wine.herokuapp.com/)
 
 ## Technologies 
 

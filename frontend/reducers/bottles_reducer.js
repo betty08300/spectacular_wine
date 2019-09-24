@@ -6,9 +6,6 @@ const BottlesReducer = (state = [], action) => {
         case RECEIVE_ALL_BOTTLES:
             return merge(state, action.payload);
 
-        case RECEIVE_NOTE: 
-            return merge(state, action.payload);
-
         default:
             return state;
     }

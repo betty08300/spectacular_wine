@@ -12,18 +12,11 @@ import BottleIndexPage from './bottle_index'
 
 const App = () => (
     <div>
-
-
         <div className="container">
             <Switch>
-                <Route exact path='/' component={BottleIndexPage} />
-                {/* <Route exact path='/products/:productId' component={ProductShowContainer} /> */}
-
-
+                <Route exact path='/' component={BottleIndexPage} />             
             </Switch>
-
         </div>
-
     </div>
 );
 

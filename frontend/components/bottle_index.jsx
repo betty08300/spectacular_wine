@@ -25,8 +25,7 @@ class BottleIndex extends React.Component {
         if(this.state.noteDefault) this.setState({noteDefault: false}) 
             this.props.fetchNote(e.currentTarget.id).then(()=>{
                 this.setState({note: this.props.note.note})
-            })
-    
+            })  
     }
 
     render() {

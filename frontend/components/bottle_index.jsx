@@ -10,34 +10,58 @@ class BottleIndex extends React.Component {
         this.state = {
             bottles: [],
             note: "To see a taster's notes, please hover over a wine.",
-            noteDefault: true
+            noteDefault: true,
+            filterText: ''
         };
-        this.handleMouseOver = this.handleMouseOver.bind(this)
+        this.handleMouseOver = this.handleMouseOver.bind(this);
+        this.handleChange = this.handleChange.bind(this);
     }
 
     componentDidMount() {
         this.props.fetchAllBottles().then(() => {
-            this.setState({bottles: this.props.bottles})
+            this.setState({ bottles: this.props.bottles })
         });
     }
 
-    handleMouseOver(e) { 
-        if(this.state.noteDefault) this.setState({noteDefault: false}) 
-            this.props.fetchNote(e.currentTarget.id).then(()=>{
-                this.setState({note: this.props.note.note})
-            })  
+    handleMouseOver(e) {
+        if (this.state.noteDefault) this.setState({ noteDefault: false })
+        this.props.fetchNote(e.currentTarget.id).then(() => {
+            this.setState({ note: this.props.note.note })
+        })
+    }
+
+    handleChange(e) {
+        this.setState({ filterText: e.target.value });
+    }
+
+    caseInsensitiveIncludes(str1, str2) {
+        return str1.toString().toLowerCase().includes(str2.toLowerCase());
     }
 
     render() {
-        const {bottles, note} = this.state;
+        const { bottles, note } = this.state;
+
+        const filterFields = [
+            "color",
+            "winery_full",
+            "wine_full",
+            "vintage",
+            "region",
+            "score"
+        ];
+
+        const selectBottles = bottles.filter((bottle) => {
+            return filterFields.some((field) => this.caseInsensitiveIncludes(bottle[field], this.state.filterText))
+        });
 
         const noteCss = this.state.noteDefault ? 'noteDefault' : 'note'
 
         return (
             <div className="wrapper">
                 <div className='header-container'>
-                        <Header/>
-                
+                    <Header />
+                    <input type='text' value={this.state.filterText} onChange={this.handleChange} />
+
                     <div className={noteCss}>
                         {note}
                     </div>
@@ -52,10 +76,10 @@ class BottleIndex extends React.Component {
                     </div>
                 </div>
                 <div>
-                    {bottles.map(bottle => {
+                    {selectBottles.map(bottle => {
                         return (
                             <div className='bottle-container' key={bottle.bottle_id} id={bottle.bottle_id} onMouseOver={this.handleMouseOver}>
-        
+
                                 <div className='rank'>
                                     {bottle.top100_rank}
                                 </div>
@@ -63,22 +87,22 @@ class BottleIndex extends React.Component {
                                     {bottle.score}
                                 </div>
                                 <div className='color'>
-                                    {bottle.color==='Red'&&
-                                    <img src={redWine}/>
-                                }
-                                    {bottle.color==='White' &&
-                                    <img src={whiteWine}/>
-                                }
-                                    {bottle.color==='Dessert'&&
-                                    <img src={dessert} />
-                                }
-                                    {bottle.color==='Sparkling' &&
-                                    <img src={sparkling}/>
-                                }
+                                    {bottle.color === 'Red' &&
+                                        <img src={redWine} />
+                                    }
+                                    {bottle.color === 'White' &&
+                                        <img src={whiteWine} />
+                                    }
+                                    {bottle.color === 'Dessert' &&
+                                        <img src={dessert} />
+                                    }
+                                    {bottle.color === 'Sparkling' &&
+                                        <img src={sparkling} />
+                                    }
 
-                                    {bottle.color==='Blush'&&
-                                    <img src={blush}/>
-                                }
+                                    {bottle.color === 'Blush' &&
+                                        <img src={blush} />
+                                    }
                                     <div className='color-text'>
                                         {bottle.color}
                                     </div>
@@ -95,7 +119,7 @@ class BottleIndex extends React.Component {
                                 <div className='region'>
                                     {bottle.region}
                                 </div>
-                                                    
+
                             </div>
                         )
                     })}

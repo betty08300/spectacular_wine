@@ -38,6 +38,13 @@ class BottleIndex extends React.Component {
         return str1.toString().toLowerCase().includes(str2.toLowerCase());
     }
 
+    getUniqueValues(field) {
+        const values = this.state.bottles.map((bottle) => bottle[field])
+        const uniqueValues = new Set(values);
+        console.log(uniqueValues);
+        return Array.from(uniqueValues);
+    }
+
     render() {
         const { bottles, note } = this.state;
 
@@ -60,6 +67,7 @@ class BottleIndex extends React.Component {
             <div className="wrapper">
                 <div className='header-container'>
                     <Header />
+
                     <input type='text' value={this.state.filterText} onChange={this.handleChange} />
 
                     <div className={noteCss}>
@@ -68,11 +76,42 @@ class BottleIndex extends React.Component {
                     <div className='title'>
                         <div className='rank'>Rank</div>
                         <div className='score'>Score</div>
-                        <div className='color'>Type</div>
-                        <div className='winery'>Winery</div>
-                        <div className='wine'>Wine</div>
-                        <div className='vintage'>Vintage</div>
-                        <div className='region'>Region</div>
+                        <div className='color'>Type
+                            <select onChange={(e) => this.setState({ filterText: e.target.value })}>
+                                {
+                                    this.getUniqueValues("color").map((value, key) => <option value={value} key={key}>{value}</option>)
+                                }
+                            </select>
+                        </div>
+
+                        <div className='winery'>Winery
+                            <select onChange={(e) => this.setState({ filterText: e.target.value })}>
+                                {
+                                    this.getUniqueValues("winery_full").map((value, key) => <option value={value} key={key}>{value}</option>)
+                                }
+                            </select>
+                        </div>
+                        <div className='wine'>Wine
+                            <select onChange={(e) => this.setState({ filterText: e.target.value })}>
+                                {
+                                    this.getUniqueValues("wine_full").map((value, key) => <option value={value} key={key}>{value}</option>)
+                                }
+                            </select>
+                        </div>
+                        <div className='vintage'>Vintage
+                            <select onChange={(e) => this.setState({ filterText: e.target.value })}>
+                                {
+                                    this.getUniqueValues("vintage").map((value, key) => <option value={value} key={key}>{value}</option>)
+                                }
+                            </select>
+                        </div>
+                        <div className='region'>Region
+                            <select onChange={(e) => this.setState({ filterText: e.target.value })}>
+                                {
+                                    this.getUniqueValues("region").map((value, key) => <option value={value} key={key}>{value}</option>)
+                                }
+                            </select>
+                        </div>
                     </div>
                 </div>
                 <div>

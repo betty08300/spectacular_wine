@@ -1,5 +1,5 @@
 .header-container {
-    height: 330px;
+    height: 375px;
     position: sticky;
     top: 0;
     box-shadow: 0px 5px 5px #bebebe;
@@ -27,6 +27,31 @@
         box-shadow: inset 0px 0px 5px #978f8f;
         height: 72px;
         color: 	#808080;
+    }
+
+    .search-bar{
+        display: flex;
+        justify-content: flex-end;
+        margin: 10px;
+
+        .search-bar-container{
+            position: relative;
+
+            input{
+                height: 27px;
+                width: 230px;
+                border: 1px solid grey;
+                padding: 0 10px 0 10px;
+                border-radius: 8px;
+            }
+
+            .search-icon{
+                position: absolute;
+                top:5px;
+                right:10px;
+                color:grey;
+            }
+        }
     }
    
 }

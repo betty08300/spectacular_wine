@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Header from './header'
-
+import Header from './header';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { fetchAllBottles, fetchNote } from '../actions/bottle_actions';
 
 class BottleIndex extends React.Component {
@@ -41,7 +42,6 @@ class BottleIndex extends React.Component {
     getUniqueValues(field) {
         const values = this.state.bottles.map((bottle) => bottle[field])
         const uniqueValues = new Set(values);
-        console.log(uniqueValues);
         return Array.from(uniqueValues);
     }
 
@@ -67,8 +67,14 @@ class BottleIndex extends React.Component {
             <div className="wrapper">
                 <div className='header-container'>
                     <Header />
-
-                    <input type='text' value={this.state.filterText} onChange={this.handleChange} />
+                    <div className='search-bar'>
+                        <div className='search-bar-container'>
+                            <input type='text' placeholder="Search" value={this.state.filterText} onChange={this.handleChange} />
+                            <div className='search-icon'>
+                                <FontAwesomeIcon icon={faSearch}/>
+                            </div>
+                        </div>
+                    </div>
 
                     <div className={noteCss}>
                         {note}
@@ -114,7 +120,7 @@ class BottleIndex extends React.Component {
                         </div>
                     </div>
                 </div>
-                <div>
+                <div className="bottle-wrapper">
                     {selectBottles.map(bottle => {
                         return (
                             <div className='bottle-container' key={bottle.bottle_id} id={bottle.bottle_id} onMouseOver={this.handleMouseOver}>

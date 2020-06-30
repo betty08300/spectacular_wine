@@ -1,0 +1,25 @@
+.show-dropdown {
+  max-height: 200px;
+  border-radius: 8px;
+  background: white;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 1.5rem 0px;
+  position: absolute;
+  top: 30px;
+  color: initial;
+  font-weight: 400;
+  overflow: auto;
+}
+
+.hide-dropdown {
+  display: none;
+}
+
+.dropdown-row {
+  display: flex;
+  padding: 8px 8px;
+
+  &:hover{
+    background: lightgrey;
+    cursor: pointer;
+  }
+}

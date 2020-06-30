@@ -38,20 +38,65 @@
     text-align: center;
 }
 
+.wineryTitle{
+    width: 20%;
+    display: flex;
+    align-items: center;
+    position: relative;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
 .winery{
     width: 20%;
 }
 
+.wineTitle{
+    width: 28%;
+    display: flex;
+    align-items: center;
+    position: relative;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
 .wine{
-    width: 30%;
+    width: 28%;
 }
 
 .vintage{
     width: 12%;
 }
 
+.vintageTitle{
+    width: 12%;
+    display: flex;
+    align-items: center;
+    position: relative;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.colorTitle {
+    width: 12%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
 .color {
-    width: 10%;
+    width: 12%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -72,8 +117,18 @@
     }
 }
 
+.regionTitle{
+    width: 13%;
+    display: flex;
+    align-items: center;
+    position: relative;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
 .region {
     width: 13%;
 }
-
 

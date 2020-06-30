@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Header from './header';
+import Dropdown from './dropdown'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faSearch, faCaretDown, faCaretUp } from "@fortawesome/free-solid-svg-icons";
 import { fetchAllBottles, fetchNote } from '../actions/bottle_actions';
 
 class BottleIndex extends React.Component {
@@ -10,12 +11,19 @@ class BottleIndex extends React.Component {
         super(props);
         this.state = {
             bottles: [],
+            filterText: '',
+            isColorActive: false,
+            isRegionActive: false,
+            isVintageActive: false,
+            isWineActive: false,
+            isWineryActive: false,
             note: "To see a taster's notes, please hover over a wine.",
             noteDefault: true,
-            filterText: ''
         };
+        this.handleChange = this.handleChange.bind(this)
+        this.handleClick = this.handleClick.bind(this)
         this.handleMouseOver = this.handleMouseOver.bind(this);
-        this.handleChange = this.handleChange.bind(this);
+        this.handleToggle = this.handleToggle.bind(this);
     }
 
     componentDidMount() {
@@ -35,6 +43,14 @@ class BottleIndex extends React.Component {
         this.setState({ filterText: e.target.value });
     }
 
+    handleClick(e) {
+        this.setState({ filterText: e.target.innerText });
+    }
+
+    handleToggle(field) {
+        this.setState({ [field]: !this.state[field] })
+    }
+
     caseInsensitiveIncludes(str1, str2) {
         return str1.toString().toLowerCase().includes(str2.toLowerCase());
     }
@@ -42,11 +58,11 @@ class BottleIndex extends React.Component {
     getUniqueValues(field) {
         const values = this.state.bottles.map((bottle) => bottle[field])
         const uniqueValues = new Set(values);
-        return Array.from(uniqueValues);
+        return Array.from(uniqueValues).sort((a, b) => a - b);
     }
 
     render() {
-        const { bottles, note } = this.state;
+        const { bottles, isColorActive, isRegionActive, isVintageActive, isWineActive, isWineryActive, note } = this.state;
 
         const filterFields = [
             "color",
@@ -71,7 +87,7 @@ class BottleIndex extends React.Component {
                         <div className='search-bar-container'>
                             <input type='text' placeholder="Search" value={this.state.filterText} onChange={this.handleChange} />
                             <div className='search-icon'>
-                                <FontAwesomeIcon icon={faSearch}/>
+                                <FontAwesomeIcon icon={faSearch} />
                             </div>
                         </div>
                     </div>
@@ -82,41 +98,51 @@ class BottleIndex extends React.Component {
                     <div className='title'>
                         <div className='rank'>Rank</div>
                         <div className='score'>Score</div>
-                        <div className='color'>Type
-                            <select onChange={(e) => this.setState({ filterText: e.target.value })}>
+                        <div className='colorTitle' onClick={() => this.handleToggle('isColorActive')} > Type
+                            <FontAwesomeIcon icon={isColorActive ? faCaretUp : faCaretDown} style={{ marginLeft: '4px' }} />
+                            <Dropdown data={this.getUniqueValues('color')} field={'isColorActive'} isActive={isColorActive} handleClick={this.handleClick} handleToggle={this.handleToggle} />
+                            {/* <select onChange={(e) => this.setState({ filterText: e.target.value })}>
                                 {
                                     this.getUniqueValues("color").map((value, key) => <option value={value} key={key}>{value}</option>)
                                 }
-                            </select>
+                            </select> */}
                         </div>
 
-                        <div className='winery'>Winery
-                            <select onChange={(e) => this.setState({ filterText: e.target.value })}>
+                        <div className='wineryTitle' onClick={() => this.handleToggle('isWineryActive')}> Winery
+                            <FontAwesomeIcon icon={isWineryActive ? faCaretUp : faCaretDown} style={{ marginLeft: '4px' }} />
+                            <Dropdown data={this.getUniqueValues('winery_full')} field={'isWineryActive'} isActive={isWineryActive} handleClick={this.handleClick} handleToggle={this.handleToggle} />
+                            {/* <select onChange={(e) => this.setState({ filterText: e.target.value })}>
                                 {
                                     this.getUniqueValues("winery_full").map((value, key) => <option value={value} key={key}>{value}</option>)
                                 }
-                            </select>
+                            </select> */}
                         </div>
-                        <div className='wine'>Wine
-                            <select onChange={(e) => this.setState({ filterText: e.target.value })}>
+                        <div className='wineTitle' onClick={() => this.handleToggle('isWineActive')}> Wine
+                            <FontAwesomeIcon icon={isWineActive ? faCaretUp : faCaretDown} style={{ marginLeft: '4px' }} />
+                            <Dropdown data={this.getUniqueValues('wine_full')} field={'isWineActive'} isActive={isWineActive} handleClick={this.handleClick} handleToggle={this.handleToggle} />
+                            {/* <select onChange={(e) => this.setState({ filterText: e.target.value })}>
                                 {
                                     this.getUniqueValues("wine_full").map((value, key) => <option value={value} key={key}>{value}</option>)
                                 }
-                            </select>
+                            </select> */}
                         </div>
-                        <div className='vintage'>Vintage
-                            <select onChange={(e) => this.setState({ filterText: e.target.value })}>
+                        <div className='vintageTitle' onClick={() => this.handleToggle('isVintageActive')}> Vintage
+                            <FontAwesomeIcon icon={isVintageActive ? faCaretUp : faCaretDown} style={{ marginLeft: '4px' }} />
+                            <Dropdown data={this.getUniqueValues('vintage')} field={'isVintageActive'} isActive={isVintageActive} handleClick={this.handleClick} handleToggle={this.handleToggle} />
+                            {/* <select onChange={(e) => this.setState({ filterText: e.target.value })}>
                                 {
                                     this.getUniqueValues("vintage").map((value, key) => <option value={value} key={key}>{value}</option>)
                                 }
-                            </select>
+                            </select> */}
                         </div>
-                        <div className='region'>Region
-                            <select onChange={(e) => this.setState({ filterText: e.target.value })}>
+                        <div className='regionTitle' onClick={() => this.handleToggle('isRegionActive')}> Region
+                            <FontAwesomeIcon icon={isRegionActive ? faCaretUp : faCaretDown} style={{ marginLeft: '4px' }} />
+                            <Dropdown data={this.getUniqueValues('region')} field={'isRegionActive'} isActive={isRegionActive} handleClick={this.handleClick} handleToggle={this.handleToggle} />
+                            {/* <select onChange={(e) => this.setState({ filterText: e.target.value })}>
                                 {
                                     this.getUniqueValues("region").map((value, key) => <option value={value} key={key}>{value}</option>)
                                 }
-                            </select>
+                            </select> */}
                         </div>
                     </div>
                 </div>
@@ -169,7 +195,7 @@ class BottleIndex extends React.Component {
                         )
                     })}
                 </div>
-            </div>
+            </div >
         )
     }
 

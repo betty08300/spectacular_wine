@@ -20,8 +20,9 @@ class BottleIndex extends React.Component {
             note: "To see a taster's notes, please hover over a wine.",
             noteDefault: true,
         };
-        this.handleChange = this.handleChange.bind(this)
-        this.handleClick = this.handleClick.bind(this)
+
+        this.handleChange = this.handleChange.bind(this);
+        this.handleClick = this.handleClick.bind(this);
         this.handleMouseOver = this.handleMouseOver.bind(this);
         this.handleToggle = this.handleToggle.bind(this);
     }
@@ -101,48 +102,23 @@ class BottleIndex extends React.Component {
                         <div className='colorTitle' onClick={() => this.handleToggle('isColorActive')} > Type
                             <FontAwesomeIcon icon={isColorActive ? faCaretUp : faCaretDown} style={{ marginLeft: '4px' }} />
                             <Dropdown data={this.getUniqueValues('color')} field={'isColorActive'} isActive={isColorActive} handleClick={this.handleClick} handleToggle={this.handleToggle} />
-                            {/* <select onChange={(e) => this.setState({ filterText: e.target.value })}>
-                                {
-                                    this.getUniqueValues("color").map((value, key) => <option value={value} key={key}>{value}</option>)
-                                }
-                            </select> */}
                         </div>
 
                         <div className='wineryTitle' onClick={() => this.handleToggle('isWineryActive')}> Winery
                             <FontAwesomeIcon icon={isWineryActive ? faCaretUp : faCaretDown} style={{ marginLeft: '4px' }} />
-                            <Dropdown data={this.getUniqueValues('winery_full')} field={'isWineryActive'} isActive={isWineryActive} handleClick={this.handleClick} handleToggle={this.handleToggle} />
-                            {/* <select onChange={(e) => this.setState({ filterText: e.target.value })}>
-                                {
-                                    this.getUniqueValues("winery_full").map((value, key) => <option value={value} key={key}>{value}</option>)
-                                }
-                            </select> */}
+                            <Dropdown data={this.getUniqueValues('winery_full')} field={'isWineryActive'} isActive={isWineryActive} handleClick={this.handleClick} handleToggle={this.handleToggle} />     
                         </div>
                         <div className='wineTitle' onClick={() => this.handleToggle('isWineActive')}> Wine
                             <FontAwesomeIcon icon={isWineActive ? faCaretUp : faCaretDown} style={{ marginLeft: '4px' }} />
                             <Dropdown data={this.getUniqueValues('wine_full')} field={'isWineActive'} isActive={isWineActive} handleClick={this.handleClick} handleToggle={this.handleToggle} />
-                            {/* <select onChange={(e) => this.setState({ filterText: e.target.value })}>
-                                {
-                                    this.getUniqueValues("wine_full").map((value, key) => <option value={value} key={key}>{value}</option>)
-                                }
-                            </select> */}
                         </div>
                         <div className='vintageTitle' onClick={() => this.handleToggle('isVintageActive')}> Vintage
                             <FontAwesomeIcon icon={isVintageActive ? faCaretUp : faCaretDown} style={{ marginLeft: '4px' }} />
                             <Dropdown data={this.getUniqueValues('vintage')} field={'isVintageActive'} isActive={isVintageActive} handleClick={this.handleClick} handleToggle={this.handleToggle} />
-                            {/* <select onChange={(e) => this.setState({ filterText: e.target.value })}>
-                                {
-                                    this.getUniqueValues("vintage").map((value, key) => <option value={value} key={key}>{value}</option>)
-                                }
-                            </select> */}
                         </div>
                         <div className='regionTitle' onClick={() => this.handleToggle('isRegionActive')}> Region
                             <FontAwesomeIcon icon={isRegionActive ? faCaretUp : faCaretDown} style={{ marginLeft: '4px' }} />
                             <Dropdown data={this.getUniqueValues('region')} field={'isRegionActive'} isActive={isRegionActive} handleClick={this.handleClick} handleToggle={this.handleToggle} />
-                            {/* <select onChange={(e) => this.setState({ filterText: e.target.value })}>
-                                {
-                                    this.getUniqueValues("region").map((value, key) => <option value={value} key={key}>{value}</option>)
-                                }
-                            </select> */}
                         </div>
                     </div>
                 </div>
